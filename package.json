@@ -1,0 +1,39 @@
+{
+  "name": "ele-h5",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:stylelint": "stylelint \"**/*.{css,scss,vue,html}\" --fix",
+    "prepare": "husky install",
+    "lint:lint-staged": "lint-staged"
+  },
+  "dependencies": {
+    "vue": "^3.4.37"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^3.7.1",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@vitejs/plugin-vue": "^5.1.2",
+    "eslint": "^9.10.0",
+    "eslint-plugin-format": "^0.1.2",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.10",
+    "postcss": "^8.4.47",
+    "postcss-html": "^1.7.0",
+    "postcss-scss": "^4.0.9",
+    "sass": "^1.79.3",
+    "stylelint": "^16.9.0",
+    "stylelint-config-recess-order": "^5.1.1",
+    "stylelint-config-standard": "^36.0.1",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1",
+    "vue-tsc": "^2.0.29"
+  }
+}
