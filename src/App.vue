@@ -1,11 +1,9 @@
 <script setup lang="ts">
-
+import TabsView from './views/tabs/TabsView.vue'
 </script>
 
 <template>
-  <div>
-    123
-  </div>
+  <TabsView />
 </template>
 
 <style scoped>

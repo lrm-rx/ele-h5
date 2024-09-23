@@ -22,4 +22,7 @@ export default antfu({
     '/bin',
     'Dockerfile',
   ],
+  rules: {
+    'unused-imports/no-unused-vars': 'off',
+  },
 })
