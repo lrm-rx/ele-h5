@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import type { ISearchRecomment } from '@/types'
+import OpSearch from '@/components/OpSearch.vue'
+import { ref } from 'vue'
 
 interface IProps {
   recomments: ISearchRecomment[]
 }
 
 defineProps<IProps>()
+
+const searchValue = ref('123')
 </script>
 
 <template>
@@ -18,7 +22,7 @@ defineProps<IProps>()
       <img class="shopcart-icon" src="@/assets/imgs/index_page/shopcart.png">
       <img class="comments-icon" src="@/assets/imgs/index_page/comments.png">
     </div>
-    <VanSearch
+    <!-- <VanSearch
       shape="round"
       background="linear-gradient(to right, rgb(53, 200, 250), rgb(31, 175, 243))"
       placeholder="世界茶饮 35减2"
@@ -26,7 +30,19 @@ defineProps<IProps>()
       <template #right-icon>
         <div>搜索</div>
       </template>
-    </VanSearch>
+    </VanSearch> -->
+    <VanSticky>
+      <OpSearch
+        v-model="searchValue"
+        shape="round"
+        background="linear-gradient(to right, rgb(53, 200, 250), rgb(31, 175, 243))"
+        placeholder="世界茶饮 35减2"
+      >
+        <template #right-icon>
+          <div>搜索</div>
+        </template>
+      </OpSearch>
+    </VanSticky>
     <div class="search-recommend">
       <div v-for="v in recomments" :key="v.value" class="tag">
         {{ v.label }}

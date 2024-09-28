@@ -15,7 +15,7 @@ const recomments = [
 
 <template>
   <div class="home-page">
-    <TheTop :recomments="recomments" />
+    <TheTop :recomments />
   </div>
 </template>
 
