@@ -1,3 +1,24 @@
+<script setup lang="ts">
+import TheTop from './components/TheTop.vue'
+
+const recomments = [
+  {
+    value: 1,
+    label: '牛腩',
+  },
+  {
+    value: 2,
+    label: '炸坤',
+  },
+]
+</script>
+
 <template>
-  <div>home</div>
+  <div class="home-page">
+    <TheTop :recomments="recomments" />
+  </div>
 </template>
+
+<style>
+
+</style>
