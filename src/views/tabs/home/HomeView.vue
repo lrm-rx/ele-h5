@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useToggle } from '@/use/useToggle'
+import SearchView from '@/views/search/SearchView.vue'
 import TheTop from './components/TheTop.vue'
 
 const recomments = [
@@ -11,11 +13,14 @@ const recomments = [
     label: '炸坤',
   },
 ]
+
+const [isSearchViewShow, toggleSearchView] = useToggle(false)
 </script>
 
 <template>
   <div class="home-page">
-    <TheTop :recomments />
+    <SearchView v-if="isSearchViewShow" @cancel="toggleSearchView" />
+    <TheTop :recomments @search-click="toggleSearchView" />
   </div>
 </template>
 

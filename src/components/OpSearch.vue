@@ -54,7 +54,7 @@ function onClear() {
             <div v-if="$slots['right-icon']" class="op-field__right-icon">
               <slot name="right-icon" />
             </div>
-            <VanIcon v-else-if="searchValue" name="clear" class="op-field__clear" @click="onClear" />
+            <VanIcon v-else-if="searchValue" name="close" class="op-field__clear" @click="onClear" />
           </div>
         </div>
       </div>
