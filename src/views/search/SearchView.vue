@@ -2,6 +2,7 @@
 import type { ISearchResult } from '@/types'
 import { fetchSearchData } from '@/api/search'
 import OpSearch from '@/components/OpSearch.vue'
+import { useDebounce } from '@/use/useDebounce'
 import { useToggle } from '@/use/useToggle'
 import { computed, ref, watch } from 'vue'
 
@@ -34,11 +35,13 @@ function onTagClick(v: string) {
   searchValue.value = v
   onSearch(v)
 }
-watch(searchValue, (nv) => {
+const debounceValue = useDebounce(searchValue, 1000)
+watch(debounceValue, (nv) => {
   if (!nv) {
     searchResult.value = []
+    return
   }
-  onSearch(nv)
+  onSearch(nv as string)
 })
 </script>
 
