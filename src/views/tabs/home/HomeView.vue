@@ -5,6 +5,7 @@ import OpLoadingView from '@/components/OpLoadingView.vue'
 import { useAsync } from '@/use/useAsync'
 import { useToggle } from '@/use/useToggle'
 import SearchView from '@/views/search/SearchView.vue'
+import CountDown from './components/CountDown.vue'
 import ScrollBar from './components/ScrollBar.vue'
 import TheTop from './components/TheTop.vue'
 import TheTransformer from './components/TheTransformer.vue'
@@ -48,6 +49,9 @@ const { data, pending } = useAsync(fetchHomePageData, {
     </OpLoadingView>
     <!-- 需要加上v-if -->
     <ScrollBar v-if="data.scrollBarInfoList.length" :data="data.scrollBarInfoList" />
+    <div class="home-page__activity">
+      <CountDown :data="data.countdown" />
+    </div>
   </div>
 </template>
 
