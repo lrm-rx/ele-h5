@@ -20,6 +20,7 @@ const emits = defineEmits<{
   'cancel': []
   'clear': []
   'update:modelValue': [v?: string | number]
+  'inputClick': []
 }>()
 
 const searchValue = defineModel<string | number>()
@@ -49,6 +50,7 @@ function onClear() {
             <input
               type="search" class="op-field__control" :value="searchValue" :placeholder
               @keypress="onKeypress"
+              @click="emits('inputClick')"
               @input="(e) => { searchValue = (e.target as HTMLInputElement).value }"
             >
             <div v-if="$slots['right-icon']" class="op-field__right-icon">

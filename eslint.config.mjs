@@ -25,5 +25,6 @@ export default antfu({
   rules: {
     'unused-imports/no-unused-vars': 'off',
     'ts/no-empty-object-type': 'off',
+    'no-console': 'off',
   },
 })
