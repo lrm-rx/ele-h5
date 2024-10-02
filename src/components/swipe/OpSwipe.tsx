@@ -99,7 +99,6 @@ export default defineComponent({
     }
 
     const move = ({ pace = 0, offset = 0 }) => {
-      console.log('count:', count.value)
       if (count.value <= 1) {
         return
       }

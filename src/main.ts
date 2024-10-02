@@ -17,6 +17,7 @@ import {
 } from 'vant'
 import { createApp } from 'vue'
 import App from './App.vue'
+import lazyPlugin from './directives/lazyLoading'
 import router from './router'
 import 'vant/lib/index.css'
 import './assets/common.scss'
@@ -40,6 +41,7 @@ app.use(Form)
 app.use(CellGroup)
 app.use(Field)
 app.use(Button)
+app.use(lazyPlugin)
 
 const rootValue = 16
 const rootWidth = 390

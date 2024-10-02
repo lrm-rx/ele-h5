@@ -136,6 +136,7 @@
     "styl",
     "stylelint",
     "Tabbar",
-    "vant"
+    "vant",
+    "weapp"
   ]
 }

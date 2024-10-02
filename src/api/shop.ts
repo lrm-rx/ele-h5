@@ -1,5 +1,4 @@
-import type { IShop } from '@/types'
-import type { IList, IPaginate } from '@/types/list'
+import type { IList, IPaginate, IShop } from '@/types'
 import axios from './base'
 
 export function fetchShopList({ _page, _limit }: IPaginate) {
