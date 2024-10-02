@@ -4,13 +4,16 @@ import { fetchHomePageData } from '@/api/home'
 import OpLoadingView from '@/components/OpLoadingView.vue'
 import OpSwipe from '@/components/swipe/OpSwipe'
 import OpSwipeItem from '@/components/swipe/OpSwipeItem'
+import { PRIMARY_COLOR, TRANSPARENT } from '@/config'
 import { useAsync } from '@/use/useAsync'
 import { useToggle } from '@/use/useToggle'
 import SearchView from '@/views/search/SearchView.vue'
+import { ref } from 'vue'
 import CountDown from './components/CountDown.vue'
 import ScrollBar from './components/ScrollBar.vue'
 import TheTop from './components/TheTop.vue'
 import TheTransformer from './components/TheTransformer.vue'
+import { HOME_TABS } from './config'
 
 const recomments = [
   {
@@ -32,6 +35,12 @@ const { data, pending } = useAsync(fetchHomePageData, {
   countdown: {} as ICountdown,
   activities: [],
 } as IHomeInfo)
+
+const tabBackgroundColor = ref(TRANSPARENT)
+
+function onTabScroll({ isFixed }: { isFixed: boolean }) {
+  tabBackgroundColor.value = isFixed ? 'white' : TRANSPARENT
+}
 </script>
 
 <template>
@@ -40,24 +49,30 @@ const { data, pending } = useAsync(fetchHomePageData, {
       <!-- isSearchViewShow 为 true 时, 这个组件在最顶层 -->
       <SearchView v-if="isSearchViewShow" @cancel="toggleSearchView" />
     </Transition>
-
-    <!-- 只做展示 -->
-    <TheTop :recomments @search-click="toggleSearchView" />
-    <OpLoadingView :loading="pending" type="skeleton">
-      <div class="home-page__banner">
-        <img v-for="v in data.banner" :key="v.imgUrl" :src="v.imgUrl">
+    <div v-show="!isSearchViewShow">
+      <!-- 只做展示 -->
+      <TheTop :recomments @search-click="toggleSearchView" />
+      <OpLoadingView :loading="pending" type="skeleton">
+        <div class="home-page__banner">
+          <img v-for="v in data.banner" :key="v.imgUrl" :src="v.imgUrl">
+        </div>
+        <TheTransformer :data="data.transformer" />
+      </OpLoadingView>
+      <!-- 需要加上v-if -->
+      <ScrollBar v-if="data.scrollBarInfoList.length" :data="data.scrollBarInfoList" />
+      <div class="home-page__activity">
+        <CountDown v-if="data.countdown" :data="data.countdown" />
+        <OpSwipe class="home-page__activity__swipe" :autoplay="3000" :loop="true">
+          <OpSwipeItem v-for="v in data.activities" :key="v">
+            <img :src="v">
+          </OpSwipeItem>
+        </OpSwipe>
       </div>
-      <TheTransformer :data="data.transformer" />
-    </OpLoadingView>
-    <!-- 需要加上v-if -->
-    <ScrollBar v-if="data.scrollBarInfoList.length" :data="data.scrollBarInfoList" />
-    <div class="home-page__activity">
-      <CountDown v-if="data.countdown" :data="data.countdown" />
-      <OpSwipe class="home-page__activity__swipe" :autoplay="3000" :loop="true">
-        <OpSwipeItem v-for="v in data.activities" :key="v">
-          <img :src="v">
-        </OpSwipeItem>
-      </OpSwipe>
+      <VanTabs sticky offset-top="54px" :color="PRIMARY_COLOR" :background="tabBackgroundColor" @scroll="onTabScroll">
+        <VanTab v-for="v in HOME_TABS" :key="v.value" :title="v.title">
+          <component :is="v.component" />
+        </VanTab>
+      </VanTabs>
     </div>
   </div>
 </template>

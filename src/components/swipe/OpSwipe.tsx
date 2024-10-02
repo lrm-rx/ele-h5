@@ -99,6 +99,7 @@ export default defineComponent({
     }
 
     const move = ({ pace = 0, offset = 0 }) => {
+      console.log('count:', count.value)
       if (count.value <= 1) {
         return
       }
@@ -240,6 +241,7 @@ export default defineComponent({
       target: track,
     })
 
+    watch(count, autoplay)
     return () => (
       <div ref={root} class={bem()}>
         <div ref={track} style={trackStyle.value} class={bem('track')} onTouchstart={onTouchStart} onTouchend={onTouchEnd}>
