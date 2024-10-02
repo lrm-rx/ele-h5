@@ -44,3 +44,33 @@ const emits = defineEmits<{
 }>()
 </script>
 ```
+
+### 解决以下问题
+
+JSX 元素隐式具有类型 "any"，因为不存在接口 "JSX.IntrinsicElements"。
+
+- 方法一:
+
+```hash
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+  }
+}
+```
+
+- 方法二: (推荐)
+
+```hash
+// xxx.d.ts
+import { VNode } from 'vue';
+
+declare type VueNode = VNode;
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      [elem: string]: unknown;
+    }
+  }
+}
+```

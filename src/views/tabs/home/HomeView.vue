@@ -2,6 +2,8 @@
 import type { ICountdown, IHomeInfo } from '@/types'
 import { fetchHomePageData } from '@/api/home'
 import OpLoadingView from '@/components/OpLoadingView.vue'
+import OpSwipe from '@/components/swipe/OpSwipe'
+import OpSwipeItem from '@/components/swipe/OpSwipeItem'
 import { useAsync } from '@/use/useAsync'
 import { useToggle } from '@/use/useToggle'
 import SearchView from '@/views/search/SearchView.vue'
@@ -50,7 +52,12 @@ const { data, pending } = useAsync(fetchHomePageData, {
     <!-- 需要加上v-if -->
     <ScrollBar v-if="data.scrollBarInfoList.length" :data="data.scrollBarInfoList" />
     <div class="home-page__activity">
-      <CountDown :data="data.countdown" />
+      <CountDown v-if="data.countdown" :data="data.countdown" />
+      <OpSwipe class="home-page__activity__swipe" :autoplay="3000" :loop="true">
+        <OpSwipeItem v-for="v in data.activities" :key="v">
+          <img :src="v">
+        </OpSwipeItem>
+      </OpSwipe>
     </div>
   </div>
 </template>

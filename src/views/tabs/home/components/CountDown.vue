@@ -30,15 +30,15 @@ function padStart(num: number) {
       <span class="number">{{ padStart(current.seconds) }}</span>
     </div>
     <div class="home-countdown__goods">
-      <img class="goods-img" :src="data.goods.imgUrl">
+      <img class="goods-img" :src="data?.goods?.imgUrl">
       <div class="goods-name op-ellipsis">
-        {{ data.goods.name }}
+        {{ data?.goods?.name }}
       </div>
       <div class="goods-price">
         <span class="goods-price__now">
-          ￥<span>{{ data.goods.price }}</span>
+          ￥<span>{{ data?.goods?.price }}</span>
         </span>
-        <span class="goods-price__old">￥{{ data.goods.oldPrice }}</span>
+        <span class="goods-price__old">￥{{ data?.goods?.oldPrice }}</span>
       </div>
     </div>
   </div>
